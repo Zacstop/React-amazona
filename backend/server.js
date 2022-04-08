@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routers/userRouter.js';
 import productRouter from './routers/productRouter.js';
-import orderRouter from 'c:/users/user/documents/amazona-o/backend/routers/orderrouter.js';
+import orderRouter from './routers/orderrouter.js';
 
 dotenv.config();
 
