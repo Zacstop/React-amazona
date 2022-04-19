@@ -144,11 +144,11 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
-  } catch (error) {
+  } catch (err) {
     const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message;
     dispatch({ type: ORDER_DELETE_FAIL, payload: message });
   }
 };
@@ -167,11 +167,11 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
       }
     );
     dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
-  } catch (error) {
+  } catch (err) {
     const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message;
     dispatch({ type: ORDER_DELIVER_FAIL, payload: message });
   }
 };
