@@ -15,6 +15,6 @@ export default function AdminRoute({ component: Component, ...rest }) {
           <Redirect to="/signin" />
         )
       }
-    ></Route>
+    />
   );
 }

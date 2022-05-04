@@ -202,10 +202,7 @@ function App() {
           <AdminRoute path="/productlist" component={ProductListScreen} exact />
           <AdminRoute path="/orderlist" component={OrderListScreen} />
           <AdminRoute path="/userlist" component={UserListScreen} />
-          <AdminRoute
-            path="/user/:id/edit"
-            component={UserEditScreen}
-          ></AdminRoute>
+          <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
           <SellerRoute
             path="/productlist/seller"
             component={ProductListScreen}

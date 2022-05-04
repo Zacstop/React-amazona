@@ -15,6 +15,9 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  PRODUCT_REVIEW_CREATE_FAIL,
+  PRODUCT_REVIEW_CREATE_REQUEST,
+  PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_SUCCESS,
@@ -135,3 +138,30 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
   }
 };
+
+export const createReview =
+  (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    try {
+      const { data } = await axios.post(
+        `/api/products/${productId}/reviews`,
+        review,
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      dispatch({
+        type: PRODUCT_REVIEW_CREATE_SUCCESS,
+        payload: data.review,
+      });
+    } catch (err) {
+      const message =
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message;
+      dispatch({ type: PRODUCT_REVIEW_CREATE_FAIL, payload: message });
+    }
+  };
