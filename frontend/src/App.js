@@ -46,11 +46,8 @@ function App() {
   }, [dispatch]);
 
   const productCategoryList = useSelector((state) => state.productCategoryList);
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
+  const { loading: loadingCategories, error: errorCategories } =
+    productCategoryList;
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);

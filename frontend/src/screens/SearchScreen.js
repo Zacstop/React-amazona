@@ -31,8 +31,6 @@ export default function SearchScreen(props) {
   const getFilterUrl = (filter) => {
     const filterCategory = filter.category || category;
     const filterName = filter.name || name;
-    const filterRating = filter.rating || rating;
-    const sortOrder = filter.order || order;
     const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
     const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}`;
@@ -86,7 +84,15 @@ export default function SearchScreen(props) {
               <MessageBox variant="danger">{errorCategories}</MessageBox>
             ) : (
               <ul>
-                {/* {categories.map((c) => (
+                <li>
+                  <Link
+                    className={'all' === category ? 'active' : ''}
+                    to={getFilterUrl({ category: 'all' })}
+                  >
+                    Any
+                  </Link>
+                </li>
+                {categories.map((c) => (
                   <li key={c}>
                     <Link
                       className={c === category ? 'active' : ''}
@@ -95,8 +101,7 @@ export default function SearchScreen(props) {
                       {c}
                     </Link>
                   </li>
-                ))} */}
-                <>d</>
+                ))}
               </ul>
             )}
           </div>
